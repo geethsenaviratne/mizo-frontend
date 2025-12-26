@@ -1,12 +1,9 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import ProductCart from './components/productCart'
-import User from './components/user'
-import Testing from './components/testing'
 import LoginPage from './pages/loginPage'
 import HomePage from './pages/HomePage'
+import SignupPage from './pages/signupPage'
+import AdminHomePage from './pages/adminHomePage'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 
@@ -19,10 +16,14 @@ function App() {
 
      <Routes paths = "/*">
 
-     <Route path = "/" element = {<LoginPage/>}/>
-     <Route path = "/home" element = {<HomePage/>}/>
+     <Route path = "/" element = {<HomePage/>}/>
+     <Route path = "/login" element = {<LoginPage/>}/>
+     <Route path = "/signup" element = {<SignupPage/>}/>
+     
+     <Route path = "/admin" element = {<AdminHomePage/>}/>
 
-    <Route path = "/*" element = {<h1> 404 ERROR Page Not Found</h1>}/>
+
+    <Route path = "/*" element = {<HomePage/>}/>
     
      </Routes>
   
