@@ -5,14 +5,16 @@ import HomePage from './pages/HomePage'
 import SignupPage from './pages/signupPage'
 import AdminHomePage from './pages/adminHomePage'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { Toaster } from 'react-hot-toast'
 
 
 function App() {
   const [count, setCount] = useState(0)
-
+  
   return (
     <>
      <BrowserRouter>
+     <Toaster/>
 
      <Routes paths = "/*">
 
