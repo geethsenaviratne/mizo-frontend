@@ -4,6 +4,7 @@ import { FiBox } from "react-icons/fi";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { FaUsers } from "react-icons/fa";
 import AdminProductsPage from "./admin/adminProductsPage";
+import AddProductForm from "./admin/addProductForm";
 
 export default function AdminHomePage() {
   return (
@@ -24,6 +25,7 @@ export default function AdminHomePage() {
             <FiBox /> Products
           </Link>
 
+
           <Link to="/admin/orders" className="flex items-center gap-3 p-3 rounded-lg hover:bg-indigo-200">
             <HiOutlineShoppingBag /> Orders
           </Link>
@@ -43,6 +45,7 @@ export default function AdminHomePage() {
             
             <Route path="dashboard" element={<h1 className="text-2xl font-bold">Dashboard</h1>} />
             <Route path="products" element={<AdminProductsPage/>} />
+            <Route path="/products/addProduct" element={<AddProductForm/>} />
             <Route path="orders" element={<h1 className="text-2xl font-bold">Orders</h1>} />
             <Route path="customers" element={<h1 className="text-2xl font-bold">Customers</h1>} />
 

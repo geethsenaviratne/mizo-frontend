@@ -1,16 +1,38 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { FaTrash, FaPencil, FaPlus } from "react-icons/fa6";
+import toast from "react-hot-toast";
+
 
 export default function AdminProductsPage() {
   const [products, setProducts] = useState([]);
+  const [productsLoading, setProductsLoading] = useState(false);
 
+  /**
+   * useEffect - React hook that runs side effects (like API calls)
+   * 
+   * How this works:
+   * 1. When component first loads, productsLoading = false
+   * 2. Since productsLoading is false, the API call runs
+   * 3. After getting data, we set productsLoading = true
+   * 4. This prevents the API from being called again
+   * 
+   * [productsLoading] - dependency array:
+   * - The effect runs whenever productsLoading changes
+   * - First render: productsLoading is false → API runs → sets to true
+   * - After that: productsLoading stays true → API doesn't run again
+   */
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/products")
-      .then((res) => setProducts(res.data))
-      .catch((err) => console.error(err));
-  }, []);
+    if (!productsLoading) {
+      axios.get("http://localhost:5000/api/products")
+      .then((res) => {
+        setProducts(res.data)
+      setProductsLoading(true);
+    })   
+    }
+    
+  }, [productsLoading]); // [] = this use for run only once when component loads (useeffect)
 
   return (
     <div className="p-6">
@@ -26,18 +48,20 @@ export default function AdminProductsPage() {
     </p>
   </div>
 
-  {/* Right side: Add button */}
-  <button className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700
+ 
+  <Link to="/admin/products/addProduct" className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700
                text-white px-5 py-2 rounded-lg shadow
                transition duration-200">
     <FaPlus size={14} />
     <span className="text-sm font-semibold">Add Product</span>
-  </button>
+  </Link>
 </div>
 
 
-      {/* Table */}
-      <div className="overflow-x-auto bg-white rounded-xl shadow-md">
+     
+      {
+        productsLoading?  
+        <div className="overflow-x-auto bg-white rounded-xl shadow-md">
         <table className="min-w-full border-collapse">
           <thead className="bg-gray-100 text-gray-700 text-sm uppercase">
             <tr>
@@ -88,8 +112,25 @@ export default function AdminProductsPage() {
                     <button className="text-blue-600 hover:text-blue-800">
                       <FaPencil size={16} />
                     </button>
-                    <button className="text-red-600 hover:text-red-800">
+                    <button className="text-red-600 hover:text-red-800"
+                    onClick={() => {
+                        const token = localStorage.getItem("token");
+                        axios.delete(`http://localhost:5000/api/products/${product.productId}`, {
+                          headers: { Authorization: "Bearer " + token } }
+                        )
+
+                        .then((res) => {
+                          console.log(res.data);
+                          toast.success("Product deleted successfully");
+                          setProductsLoading(false); // Trigger re-fetch after successful delete
+                        })
+                        .catch((err) => {
+                          console.error(err);
+                          toast.error("Error deleting product");
+                        });
+                      }}>
                       <FaTrash size={16} />
+                      
                     </button>
                   </div>
                 </td>
@@ -98,13 +139,23 @@ export default function AdminProductsPage() {
           </tbody>
         </table>
 
+        
         {/* Empty State */}
         {products.length === 0 && (
           <div className="text-center py-10 text-gray-500">
             No products found
           </div>
         )}
-      </div>
+      </div>:
+        
+        <div className="w-full h-full flex flex-col justify-center items-center gap-3">
+  <div className="w-14 h-14 border-4 border-gray-200 border-t-blue-600 rounded-full animate-spin"></div>
+  <p className="text-sm text-gray-500">Loading...</p>
+</div>
+
+
+      }
+      
     </div>
   );
 }
