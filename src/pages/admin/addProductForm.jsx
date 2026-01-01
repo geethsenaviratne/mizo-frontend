@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import uploadMediaToSupabase from "../../utils/mediaUpload";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
@@ -10,6 +11,7 @@ export default function AddProductForm() {
   const [productName, setProductName] = useState("");
   const [alternativeNames, setAlternativeNames] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+  const [imageFiles, setImageFiles] = useState([]);
   const [price, setPrice] = useState("");
   const [lastPrice, setLastPrice] = useState("");
   const [stock, setStock] = useState("");
@@ -20,18 +22,24 @@ export default function AddProductForm() {
     async function handleSubmit(e) {
         e.preventDefault();
         const altNames = alternativeNames.split(",")
-        const imgUrl = imageUrl.split(",");
+        
+        const promisesArray = [];
+        for (let i = 0; i < imageFiles.length; i++) {
+          promisesArray[i] =  uploadMediaToSupabase(imageFiles[i]);
+        }
+
+        const imgUrls = await Promise.all(promisesArray);
 
         const product = {
-            productId : productId,
-            productName : productName,
-            alternativeNames: altNames,
-            imageUrl: imgUrl,
-            price: price,
-            lastPrice: lastPrice,
-            stock: stock,
-            description: description
-        }
+          productId: productId,
+          productName: productName,
+          alternativeNames: altNames,
+          images: imgUrls,
+          price: price,
+          lastPrice: lastPrice,
+          stock: stock,
+          description: description,
+        };
 
         const token = localStorage.getItem("token")
 
@@ -122,20 +130,60 @@ export default function AddProductForm() {
             />
           </div>
 
-          {/* Image URL */}
-          <div className="flex flex-col">
-            <label className="text-sm font-medium text-gray-700 mb-1">
-              Image URL
-            </label>
-            <input
-              type="text"
-              placeholder="https://example.com/image.jpg"
-              className="border rounded-lg px-3 py-2
-                         focus:outline-none focus:ring-2 focus:ring-blue-500"
-            value={imageUrl}
-            onChange={(e)=>{setImageUrl(e.target.value)}}
-            />
-          </div>
+          {/* Product Images */}
+<div className="flex flex-col md:col-span-2">
+  <label className="text-sm font-medium text-gray-700 mb-2">
+    Product Images
+  </label>
+
+  <label
+    htmlFor="imageUpload"
+    className="flex flex-col items-center justify-center
+               border-2 border-dashed border-gray-300
+               rounded-lg p-6 cursor-pointer
+               hover:border-blue-500 hover:bg-blue-50
+               transition"
+  >
+    <svg
+      className="w-10 h-10 text-gray-400 mb-2"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M7 16V4m0 0L3 8m4-4l4 4m6 8v4m0 0l4-4m-4 4l-4-4"
+      />
+    </svg>
+
+    <p className="text-sm text-gray-600">
+      Click to upload 
+    </p>
+    <p className="text-xs text-gray-400 mt-1">
+      Multiple images supported
+    </p>
+
+    <input
+      id="imageUpload"
+      type="file"
+      className="hidden"
+      multiple
+      onChange={(e) => {
+        setImageFiles(e.target.files);
+      }}
+    />
+  </label>
+
+  {/* Selected files count */}
+  {imageFiles.length > 0 && (
+    <p className="text-sm text-gray-500 mt-2">
+      {imageFiles.length} image(s) selected
+    </p>
+  )}
+</div>
+
 
           {/* Price */}
           <div className="flex flex-col">
