@@ -25,7 +25,7 @@ export default function AdminProductsPage() {
    */
   useEffect(() => {
     if (!productsLoading) {
-      axios.get("http://localhost:5000/api/products")
+      axios.get("import.meta.env.VITE_BACKEND_URL/api/products")
       .then((res) => {
         setProducts(res.data)
         console.log(res.data)
@@ -116,7 +116,7 @@ export default function AdminProductsPage() {
                     <button className="text-red-600 hover:text-red-800"
                     onClick={() => {
                         const token = localStorage.getItem("token");
-                        axios.delete(`http://localhost:5000/api/products/${product.productId}`, {
+                        axios.delete(`import.meta.env.VITE_BACKEND_URL/api/products/${product.productId}`, {
                           headers: { Authorization: "Bearer " + token } }
                         )
 
