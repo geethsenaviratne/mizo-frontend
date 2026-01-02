@@ -25,12 +25,18 @@ export default function AdminProductsPage() {
    */
   useEffect(() => {
     if (!productsLoading) {
-      axios.get("import.meta.env.VITE_BACKEND_URL/api/products")
+      axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/products`)
       .then((res) => {
         setProducts(res.data)
         console.log(res.data)
-      setProductsLoading(true);
-    })   
+      })
+      .catch((err) => {
+        console.error("Error fetching products:", err);
+        toast.error("Error fetching products");
+      })
+      .finally(() => {
+        setProductsLoading(true);
+      });
     }
     
   }, [productsLoading]); // [] = this use for run only once when component loads (useeffect)
@@ -50,7 +56,7 @@ export default function AdminProductsPage() {
   </div>
 
  
-  <Link to="/admin/products/addProduct" className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700
+  <Link to="/admin/products/addProduct" className="flex items-center gap-2  bg-rose-400 hover:bg-rose-500
                text-white px-5 py-2 rounded-lg shadow
                transition duration-200">
     <FaPlus size={14} />
@@ -64,7 +70,7 @@ export default function AdminProductsPage() {
         productsLoading?  
         <div className="overflow-x-auto bg-white rounded-xl shadow-md">
         <table className="min-w-full border-collapse">
-          <thead className="bg-gray-100 text-gray-700 text-sm uppercase">
+          <thead className="bg-rose-100 text-gray-700 text-sm uppercase">
             <tr>
               <th className="px-4 py-3 text-left">Product ID</th>
               <th className="px-4 py-3 text-left">Name</th>
@@ -116,7 +122,7 @@ export default function AdminProductsPage() {
                     <button className="text-red-600 hover:text-red-800"
                     onClick={() => {
                         const token = localStorage.getItem("token");
-                        axios.delete(`import.meta.env.VITE_BACKEND_URL/api/products/${product.productId}`, {
+                        axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/products/${product.productId}`, {
                           headers: { Authorization: "Bearer " + token } }
                         )
 
@@ -150,7 +156,7 @@ export default function AdminProductsPage() {
       </div>:
         
         <div className="w-full h-full flex flex-col justify-center items-center gap-3">
-  <div className="w-14 h-14 border-4 border-gray-200 border-t-blue-600 rounded-full animate-spin"></div>
+  <div className="w-14 h-14 border-4 border-gray-200 border-t-rose-400 rounded-full animate-spin"></div>
   <p className="text-sm text-gray-500">Loading...</p>
 </div>
 
