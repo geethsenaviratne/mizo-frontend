@@ -5,6 +5,7 @@ import { HiOutlineShoppingBag } from "react-icons/hi";
 import { FaUsers } from "react-icons/fa";
 import AdminProductsPage from "./admin/adminProductsPage";
 import AddProductForm from "./admin/addProductForm";
+import EditProductForm from "./admin/editProductForm";
 
 export default function AdminHomePage() {
   return (
@@ -83,6 +84,10 @@ export default function AdminHomePage() {
             <Route
               path="products/addProduct"
               element={<AddProductForm />}
+            />
+            <Route
+              path="products/editproduct"
+              element={<EditProductForm />}
             />
 
             <Route

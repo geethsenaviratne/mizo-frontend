@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaTrash, FaPencil, FaPlus } from "react-icons/fa6";
 import toast from "react-hot-toast";
 
@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 export default function AdminProductsPage() {
   const [products, setProducts] = useState([]);
   const [productsLoading, setProductsLoading] = useState(false);
+  
 
   /**
    * useEffect - React hook that runs side effects (like API calls)
@@ -25,21 +26,18 @@ export default function AdminProductsPage() {
    */
   useEffect(() => {
     if (!productsLoading) {
-      axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/products`)
+      axios.get(import.meta.env.VITE_BACKEND_URL + "/api/products")
       .then((res) => {
         setProducts(res.data)
         console.log(res.data)
+          setProductsLoading(true);
       })
-      .catch((err) => {
-        console.error("Error fetching products:", err);
-        toast.error("Error fetching products");
-      })
-      .finally(() => {
-        setProductsLoading(true);
-      });
+      
     }
     
   }, [productsLoading]); // [] = this use for run only once when component loads (useeffect)
+
+  const navigate = useNavigate();
 
   return (
     <div className="p-6">
@@ -85,7 +83,7 @@ export default function AdminProductsPage() {
           <tbody className="divide-y">
             {products.map((product) => (
               <tr
-                key={product._id}
+                key={product.productId}
                 className="hover:bg-gray-50 transition"
               >
                 <td className="px-4 py-3 font-medium">
@@ -116,14 +114,21 @@ export default function AdminProductsPage() {
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex justify-center gap-3">
-                    <button className="text-blue-600 hover:text-blue-800">
+                    <button className="text-blue-600 hover:text-blue-800"
+                    onClick={()=>{
+                      navigate("/admin/products/editproduct", {state: {product: product}});
+                    }}
+                    >
                       <FaPencil size={16} />
                     </button>
+
                     <button className="text-red-600 hover:text-red-800"
                     onClick={() => {
                         const token = localStorage.getItem("token");
-                        axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/products/${product.productId}`, {
-                          headers: { Authorization: "Bearer " + token } }
+                        axios.delete(import.meta.env.VITE_BACKEND_URL + `/api/products/${product.productId}`, {
+                          headers: { Authorization: `Bearer ${token}`,
+                         },
+                        }
                         )
 
                         .then((res) => {

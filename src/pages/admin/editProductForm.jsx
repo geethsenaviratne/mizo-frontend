@@ -1,20 +1,28 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState} from "react";
 import uploadMediaToSupabase from "../../utils/mediaUpload";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-export default function AddProductForm() {
+export default function EditProductForm() {
+ 
+  const location = useLocation();
   const navigate = useNavigate();
-
-  const [productId, setProductID] = useState("");
-  const [productName, setProductName] = useState("");
-  const [alternativeNames, setAlternativeNames] = useState("");
+  const product = location.state.product;
+  const altNames = product.altNames.join(",");
+  
+    if (product == null) {
+      navigate("/admin/products");
+    }
+ 
+  const [productId, setProductID] = useState(product.productId);
+  const [productName, setProductName] = useState(product.productName);
+  const [alternativeNames, setAlternativeNames] = useState(altNames);
   const [imageFiles, setImageFiles] = useState([]);
-  const [price, setPrice] = useState("");
-  const [lastPrice, setLastPrice] = useState("");
-  const [stock, setStock] = useState("");
-  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState(product.price);
+  const [lastPrice, setLastPrice] = useState(product.lastPrice);
+  const [stock, setStock] = useState(product.stock);
+  const [description, setDescription] = useState(product.description);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -22,17 +30,21 @@ export default function AddProductForm() {
     const altNames = alternativeNames.split(",");
 
     const promisesArray = [];
+    let imgUrls = product.images;
+
+    if (imageFiles.length > 0) {
+
     for (let i = 0; i < imageFiles.length; i++) {
       promisesArray[i] = uploadMediaToSupabase(imageFiles[i]);
     }
 
-    const imgUrls = await Promise.all(promisesArray);
+     imgUrls = await Promise.all(promisesArray);
+      }
 
-    const product = {
+   const productData = {
       productId,
       productName,
       alternativeNames: altNames,
-      altNames: altNames,
       images: imgUrls,
       price,
       lastPrice,
@@ -43,19 +55,19 @@ export default function AddProductForm() {
     const token = localStorage.getItem("token");
 
     try {
-      await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/products`,
-        product,
+      await axios.put(
+        import.meta.env.VITE_BACKEND_URL + "/api/products/" + product.productId,
+        productData,
         {
           headers: {
             Authorization: "Bearer " + token,
           },
         }
       );
-      toast.success("Product added successfully");
+      toast.success("Product updated successfully");
       navigate("/admin/products");
     } catch (err) {
-      toast.error("Error adding product");
+      toast.error("Failed to update product");
       console.error(err);
     }
   }
@@ -67,7 +79,7 @@ export default function AddProductForm() {
       <div className="max-w-5xl mx-auto flex items-center justify-between mb-8">
         <div>
           <h1 className="text-3xl font-bold text-gray-800">
-            Add New Product
+            Edit Product Form
           </h1>
           <p className="text-gray-500">
             Add beauty products to your store
@@ -91,8 +103,9 @@ export default function AddProductForm() {
 
           {/* Product ID */}
           <Input
+          disabled
             label="Product ID"
-            placeholder=" Edit Product Form (eg: BEAUTY004)"
+            placeholder="Enter Product ID"
             value={productId}
             onChange={(e) => setProductID(e.target.value)}
           />
@@ -209,7 +222,7 @@ export default function AddProductForm() {
                          bg-rose-400 hover:bg-rose-500
                          text-white font-semibold shadow transition"
             >
-              Add Product
+              Update Product
             </button>
           </div>
 
