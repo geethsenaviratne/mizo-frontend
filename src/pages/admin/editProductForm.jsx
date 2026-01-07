@@ -82,7 +82,7 @@ export default function EditProductForm() {
             Edit Product Form
           </h1>
           <p className="text-gray-500">
-            Add beauty products to your store
+            Update beauty products to your store
           </p>
         </div>
 
