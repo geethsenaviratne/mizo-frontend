@@ -25,7 +25,7 @@ export default function ProductOverview() {
     }, []);
 
     return (
-        <div className="w-full min-h-[calc(100vh-80px)] bg-[#f9fafb] px-6 py-10">
+        <div className="w-full min-h-[calc(100vh-80px)] bg-[#f9fafb] px-6 ">
 
             
             {/* LOADING */}
@@ -76,95 +76,157 @@ export default function ProductOverview() {
 )}
 
 
-            {/* FOUND */}
-            {status === "found" && (
-                <div className="w-full bg-white rounded-3xl shadow-xl p-8">
+           {/* FOUND */}
+{status === "found" && (
+  <div className="w-full bg-white rounded-3xl shadow-xl p-8">
 
-                    <div className="w-full flex flex-col lg:flex-row gap-10">
+    {/* TOP SECTION: IMAGE + DETAILS */}
+    <div className="w-full flex flex-col lg:flex-row gap-10">
 
-                        {/* LEFT – IMAGE */}
-                        <div className="lg:w-[45%] w-full">
-                            <ImageSlider images={product.images} />
-                        </div>
+      {/* LEFT – IMAGE */}
+      <div className="lg:w-[45%] w-full">
+        <ImageSlider images={product.images} />
+      </div>
 
-                        {/* RIGHT – DETAILS */}
-                        <div className="lg:w-[55%] w-full flex flex-col gap-4">
+      {/* RIGHT – DETAILS */}
+      <div className="lg:w-[55%] w-full flex flex-col gap-4">
 
-                            <h1 className="text-3xl font-bold text-gray-800">
-                                {product.productName}
-                            </h1>
+        <h1 className="text-3xl font-bold text-gray-800">
+          {product.productName}
+        </h1>
 
-                            <h2 className="text-2xl font-medium text-gray-500">
-                                {product.altNames.join(" | ")}
-                            </h2>
+        <h2 className="text-xl font-medium text-gray-500">
+          {product.altNames.join(" | ")}
+        </h2>
 
-                            {/* PRICE */}
-                            <div className="text-2xl text-gray-700 flex items-center gap-3">
-                                {product.price > product.lastPrice && (
-                                    <span className="line-through text-red-400 text-lg">
-                                        LKR {product.price}
-                                    </span>
-                                )}
-                                <span className="font-bold text-gray-800">
-                                    LKR {product.lastPrice}
-                                </span>
-                            </div>
+        {/* PRICE */}
+        <div className="text-2xl flex items-center gap-3">
+          {product.price > product.lastPrice && (
+            <span className="line-through text-red-400 text-lg">
+              LKR {product.price}
+            </span>
+          )}
+          <span className="font-bold text-gray-800">
+            LKR {product.lastPrice}
+          </span>
+        </div>
 
-                            {/* DESCRIPTION */}
-                            <p className="text-gray-600 leading-relaxed">
-                                {product.description}
-                            </p>
+        {/* DESCRIPTION */}
+        <p className="text-gray-600 leading-relaxed">
+          {product.description}
+        </p>
 
-                            {/* BUTTONS */}
-                            <h1 className=" text-gray-600 text-sm">Shipping calculated at checkout.</h1>
-                            <div className="flex flex-col gap-3 mb-6">
-                            <button className="w-full border border-gray-300 py-3 rounded-lg font-semibold hover:bg-gray-50 transition cursor-pointer">
-                                Add to cart
-                            </button>
+        <p className="text-sm text-gray-500">
+          Shipping calculated at checkout.
+        </p>
 
-                            <button className="w-full bg-rose-200 hover:bg-rose-300 py-3 rounded-lg font-semibold transition cursor-pointer">
-                                Buy it now
-                                
-                            </button>
-                        </div>
+        {/* BUTTONS */}
+        <div className="flex flex-col gap-3">
+          <button className="w-full border border-gray-300 py-3 rounded-lg font-semibold hover:bg-gray-50 transition cursor-pointer">
+            Add to cart
+          </button>
 
-                            {/* INFO SECTION */}
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+          <button className="w-full bg-rose-200 hover:bg-rose-300 py-3 rounded-lg font-semibold transition cursor-pointer">
+            Buy it now
+          </button>
+        </div>
 
-                                <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-xl">
-                                    <FaTruck className="text-gray-500 text-xl" />
-                                    <span className="text-sm text-gray-700">
-                                        Delivery Charge LKR 350
-                                    </span>
-                                </div>
+        {/* ICON INFO */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
 
-                                <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-xl">
-                                    <FaCheckCircle className="text-gray-500 text-xl" />
-                                    <span className="text-sm text-gray-700">
-                                        Guaranteed 100% Authentic Products
-                                    </span>
-                                </div>
+          <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-xl">
+            <FaTruck className="text-gray-500 text-xl" />
+            <span className="text-sm text-gray-700">
+              Delivery Charge LKR 350
+            </span>
+          </div>
 
-                                <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-xl">
-                                    <FaGlobeAsia className="text-gray-500text-xl" />
-                                    <span className="text-sm text-gray-700">
-                                        Imported from South Korea
-                                    </span>
-                                </div>
+          <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-xl">
+            <FaCheckCircle className="text-gray-500 text-xl" />
+            <span className="text-sm text-gray-700">
+              Guaranteed 100% Authentic Products
+            </span>
+          </div>
 
-                                <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-xl">
-                                    <FaLock className="text-gray-500 text-xl" />
-                                    <span className="text-sm text-gray-700">
-                                        Secure Payments
-                                    </span>
-                                </div>
+          <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-xl">
+            <FaGlobeAsia className="text-gray-500 text-xl" />
+            <span className="text-sm text-gray-700">
+              Imported from South Korea
+            </span>
+          </div>
 
-                            </div>
+          <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-xl">
+            <FaLock className="text-gray-500 text-xl" />
+            <span className="text-sm text-gray-700">
+              Secure Payments
+            </span>
+          </div>
 
-                        </div>
-                    </div>
-                </div>
-            )}
+        </div>
+
+      </div>
+    </div>
+
+    {/* 🔽 FULL-WIDTH SHIPPING INFO */}
+    <div className="mt-12 border-t pt-8">
+
+      <h3 className="text-2xl font-semibold text-gray-800 mb-6">
+        Shipping Information
+      </h3>
+
+      <div className="space-y-6 text-sm text-gray-600 leading-relaxed max-w-4xl">
+
+        <div>
+          <h4 className="font-semibold text-gray-800 mb-1">
+            Order Processing Time
+          </h4>
+          <p>
+            Delivery could take between <span className="font-medium">1–3 working days</span> excluding
+            weekends and public holidays from the day of dispatch depending on
+            the payment method you choose.
+          </p>
+        </div>
+
+        <div>
+          <h4 className="font-semibold text-gray-800 mb-1">
+            Same Day Delivery (Within Colombo & Suburbs Only)
+          </h4>
+          <p>
+            Same-day delivery is available for selected Colombo and suburb areas.
+            Orders must be placed before <span className="font-medium">3:00 PM</span>.
+          </p>
+          
+        </div>
+
+        <div>
+          <h4 className="font-semibold text-gray-800 mb-1">
+            Delivery Charges
+          </h4>
+          <p>Standard Delivery Charge: <span className="font-medium">LKR 350.00</span></p>
+        </div>
+
+        <div>
+          <h4 className="font-semibold text-gray-800 mb-1">
+            Shipping Notifications
+          </h4>
+          <p>
+            A confirmation email with tracking details will be sent after placing your order.
+          </p>
+        </div>
+
+        <div>
+          <h4 className="font-semibold text-gray-800 mb-1">
+            International Shipping
+          </h4>
+          <p>Currently, we do not offer international shipping.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+)}
+
 
         </div>
     );
