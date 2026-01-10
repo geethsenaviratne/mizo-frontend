@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ImageSlider from "../../components/imageSlider";
 import { FaTruck, FaCheckCircle, FaLock, FaGlobeAsia } from "react-icons/fa";
+import { addToCart } from "../../utils/cartFunction";
+import toast from "react-hot-toast";
 
 export default function ProductOverview() {
 
@@ -23,6 +25,11 @@ export default function ProductOverview() {
                 }
             });
     }, []);
+
+    function onAddtoCart() { 
+      addToCart(product.productId, 1);
+      toast.success(product.productId + " Added to cart 🛒");
+    }
 
     return (
         <div className="w-full min-h-[calc(100vh-80px)] bg-[#f9fafb] px-6 ">
@@ -122,7 +129,7 @@ export default function ProductOverview() {
 
         {/* BUTTONS */}
         <div className="flex flex-col gap-3">
-          <button className="w-full border border-gray-300 py-3 rounded-lg font-semibold hover:bg-gray-50 transition cursor-pointer">
+          <button onClick={onAddtoCart} className="w-full border border-gray-300 py-3 rounded-lg font-semibold hover:bg-gray-50 transition cursor-pointer">
             Add to cart
           </button>
 

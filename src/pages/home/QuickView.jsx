@@ -4,6 +4,8 @@ import { FiX } from "react-icons/fi";
 import { MdLocalShipping, MdLock } from "react-icons/md";
 import { RiShieldCheckLine } from "react-icons/ri";
 import { subscribe, closeQuickView } from "../../utils/quickViewService";
+import { addToCart } from "../../utils/cartFunction";
+import toast from "react-hot-toast";
 
 function QuickViewModal({ product, onClose }) {
   if (!product) return null;
@@ -14,6 +16,11 @@ function QuickViewModal({ product, onClose }) {
   useEffect(() => {
     setActive(imgs[0] || null);
   }, [product]);
+
+  function onAddtoCart() { 
+      addToCart(product.productId, 1);
+      toast.success(product.productId + " Added to cart 🛒");
+    }
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center px-6">
@@ -63,7 +70,7 @@ function QuickViewModal({ product, onClose }) {
             <p className="text-sm text-gray-600 leading-relaxed mb-6">{product.description || product.shortDescription || 'No description available.'}</p>
 
             <div className="space-y-3">
-              <button className="w-full border border-gray-300  hover:bg-gray-50 transition cursor-pointer py-3 rounded text-gray-800">Add to cart</button>
+              <button onClick={onAddtoCart} className="w-full border border-gray-300  hover:bg-gray-50 transition cursor-pointer py-3 rounded text-gray-800">Add to cart</button>
               <button className="w-full bg-rose-200 hover:bg-rose-300 text-pink-900 py-3 rounded cursor-pointer">Buy it now</button>
             </div>
 

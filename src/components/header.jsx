@@ -44,8 +44,32 @@ export default function Header() {
         </Link>
       </nav>
 
-      {/* RIGHT: AUTH BUTTONS */}
-      <div className="flex items-center gap-4">
+      {/* RIGHT: CART & AUTH BUTTONS */}
+      <div className="flex items-center gap-5">
+        {/* Cart Icon */}
+        <Link
+          to="/cart"
+          className="relative flex items-center gap-1 text-gray-700 hover:text-rose-500 transition group"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 group-hover:scale-110 transition-transform"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+            />
+          </svg>
+          <span className="hidden sm:inline font-medium">Cart</span>
+        </Link>
+
+        <div className="w-px h-6 bg-gray-300"></div>
+
         <Link
           to="/login"
           className="text-gray-700 font-medium hover:text-rose-500 transition"
@@ -59,6 +83,8 @@ export default function Header() {
         >
           Sign Up
         </Link>
+
+        
       </div>
 
     </header>

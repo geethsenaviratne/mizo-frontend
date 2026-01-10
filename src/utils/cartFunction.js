@@ -33,6 +33,8 @@ export function addToCart(productId,qty) {
 
 export function saveCart(cart) {
     localStorage.setItem('cart', JSON.stringify(cart));
+    // Dispatch custom event to notify cart updates
+    window.dispatchEvent(new Event('cartUpdated'));
 }
 
 export function clearCart() {

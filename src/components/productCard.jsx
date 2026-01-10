@@ -12,6 +12,10 @@ export default function ProductCard({ product }) {
     }
     console.log(action, product.productId);
   };
+  function onAddtoCart() { 
+      addToCart(product.productId, 1);
+      toast.success(product.productId + " Added to cart 🛒");
+    }
 
   return (
     <Link to={`/productInfo/${product.productId}`} className="group">
@@ -36,8 +40,9 @@ export default function ProductCard({ product }) {
             <FiSearch className="text-gray-700" />
           </button>
           <button
+          
             aria-label="Add"
-            onClick={(e) => handleIconClick(e, "add")}
+            onClick={onAddtoCart}
             className="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center hover:bg-pink-200 transition shadow-md ring-4 ring-white pointer-events-auto"
           >
             <FiPlus className="text-gray-700" />
