@@ -75,7 +75,7 @@ export default function Cart() {
     const finalTotal = total + (cart.length > 0 ? SHIPPING_FEE : 0);
 
     return (
-        <div className="min-h-[calc(100vh-80px)] bg-[#f9fafb] px-6 py-10">
+        <div className="min-h-[calc(100vh-80px)] bg-[#f9fafb] px-6 ">
             {/* HEADER */}
             <div className="max-w-6xl mx-auto flex items-center gap-4 mb-10">
                 <span className="text-4xl">🛒</span>

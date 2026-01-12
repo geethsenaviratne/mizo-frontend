@@ -32,7 +32,8 @@ export default function ProductOverview() {
     }
 
     return (
-        <div className="w-full min-h-[calc(100vh-80px)] bg-[#f9fafb] px-6 ">
+        // Responsive padding: smaller on mobile, larger on tablet+
+        <div className="w-full min-h-[calc(100vh-80px)] bg-[#f9fafb] px-3 sm:px-6">
 
             
             {/* LOADING */}
@@ -85,7 +86,8 @@ export default function ProductOverview() {
 
            {/* FOUND */}
 {status === "found" && (
-  <div className="w-full bg-white rounded-3xl shadow-xl p-8">
+  // Responsive card: smaller padding & border-radius on mobile
+  <div className="w-full bg-white rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-6 lg:p-8">
 
     {/* TOP SECTION: IMAGE + DETAILS */}
     <div className="w-full flex flex-col lg:flex-row gap-10">
@@ -98,18 +100,19 @@ export default function ProductOverview() {
       {/* RIGHT – DETAILS */}
       <div className="lg:w-[55%] w-full flex flex-col gap-4">
 
-        <h1 className="text-3xl font-bold text-gray-800">
+        {/* Responsive text: scales up from mobile to desktop */}
+        <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-800">
           {product.productName}
         </h1>
 
-        <h2 className="text-xl font-medium text-gray-500">
+        <h2 className="text-base sm:text-lg lg:text-xl font-medium text-gray-500">
           {product.altNames.join(" | ")}
         </h2>
 
-        {/* PRICE */}
-        <div className="text-2xl flex items-center gap-3">
+        {/* PRICE - flex-wrap allows price to wrap on small screens */}
+        <div className="text-xl sm:text-2xl flex items-center gap-2 sm:gap-3 flex-wrap">
           {product.price > product.lastPrice && (
-            <span className="line-through text-red-400 text-lg">
+            <span className="line-through text-red-400 text-sm sm:text-lg">
               LKR {product.price}
             </span>
           )}
@@ -119,52 +122,52 @@ export default function ProductOverview() {
         </div>
 
         {/* DESCRIPTION */}
-        <p className="text-gray-600 leading-relaxed">
+        <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
           {product.description}
         </p>
 
-        <p className="text-sm text-gray-500">
+        <p className="text-xs sm:text-sm text-gray-500">
           Shipping calculated at checkout.
         </p>
 
-        {/* BUTTONS */}
-        <div className="flex flex-col gap-3">
-          <button onClick={onAddtoCart} className="w-full border border-gray-300 py-3 rounded-lg font-semibold hover:bg-gray-50 transition cursor-pointer">
+        {/* BUTTONS - smaller padding & text on mobile */}
+        <div className="flex flex-col gap-2 sm:gap-3">
+          <button onClick={onAddtoCart} className="w-full border border-gray-300 py-2.5 sm:py-3 rounded-lg font-semibold text-sm sm:text-base hover:bg-gray-50 transition cursor-pointer">
             Add to cart
           </button>
 
-          <button className="w-full bg-rose-200 hover:bg-rose-300 py-3 rounded-lg font-semibold transition cursor-pointer">
+          <button className="w-full bg-rose-200 hover:bg-rose-300 py-2.5 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition cursor-pointer">
             Buy it now
           </button>
         </div>
 
-        {/* ICON INFO */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+        {/* ICON INFO - responsive grid with compact cards on mobile */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 mt-4 sm:mt-6">
 
-          <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-xl">
-            <FaTruck className="text-gray-500 text-xl" />
-            <span className="text-sm text-gray-700">
+          <div className="flex items-center gap-2 sm:gap-3 bg-gray-50 p-3 sm:p-4 rounded-lg sm:rounded-xl">
+            <FaTruck className="text-gray-500 text-lg sm:text-xl flex-shrink-0" />
+            <span className="text-xs sm:text-sm text-gray-700">
               Delivery Charge LKR 350
             </span>
           </div>
 
-          <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-xl">
-            <FaCheckCircle className="text-gray-500 text-xl" />
-            <span className="text-sm text-gray-700">
+          <div className="flex items-center gap-2 sm:gap-3 bg-gray-50 p-3 sm:p-4 rounded-lg sm:rounded-xl">
+            <FaCheckCircle className="text-gray-500 text-lg sm:text-xl flex-shrink-0" />
+            <span className="text-xs sm:text-sm text-gray-700">
               Guaranteed 100% Authentic Products
             </span>
           </div>
 
-          <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-xl">
-            <FaGlobeAsia className="text-gray-500 text-xl" />
-            <span className="text-sm text-gray-700">
+          <div className="flex items-center gap-2 sm:gap-3 bg-gray-50 p-3 sm:p-4 rounded-lg sm:rounded-xl">
+            <FaGlobeAsia className="text-gray-500 text-lg sm:text-xl flex-shrink-0" />
+            <span className="text-xs sm:text-sm text-gray-700">
               Imported from South Korea
             </span>
           </div>
 
-          <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-xl">
-            <FaLock className="text-gray-500 text-xl" />
-            <span className="text-sm text-gray-700">
+          <div className="flex items-center gap-2 sm:gap-3 bg-gray-50 p-3 sm:p-4 rounded-lg sm:rounded-xl">
+            <FaLock className="text-gray-500 text-lg sm:text-xl flex-shrink-0" />
+            <span className="text-xs sm:text-sm text-gray-700">
               Secure Payments
             </span>
           </div>
@@ -174,14 +177,14 @@ export default function ProductOverview() {
       </div>
     </div>
 
-    {/* 🔽 FULL-WIDTH SHIPPING INFO */}
-    <div className="mt-12 border-t pt-8">
+    {/* SHIPPING INFO - responsive margins, text sizes for mobile */}
+    <div className="mt-8 sm:mt-12 border-t pt-6 sm:pt-8">
 
-      <h3 className="text-2xl font-semibold text-gray-800 mb-6">
+      <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-800 mb-4 sm:mb-6">
         Shipping Information
       </h3>
 
-      <div className="space-y-6 text-sm text-gray-600 leading-relaxed max-w-4xl">
+      <div className="space-y-4 sm:space-y-6 text-xs sm:text-sm text-gray-600 leading-relaxed max-w-4xl">
 
         <div>
           <h4 className="font-semibold text-gray-800 mb-1">

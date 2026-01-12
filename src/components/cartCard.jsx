@@ -99,61 +99,64 @@ export function CartCard(props) {
     }
 
     return (
-        <div className="bg-[#FDF8F5] rounded-xl p-5 mb-4 w-full">
-            <div className="flex items-center justify-between">
+        <div className="bg-[#FDF8F5] rounded-xl p-3 sm:p-5 mb-4 w-full">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 {/* Left Section - Image and Product Info */}
-                <div className="flex items-center">
+                <div className="flex items-start sm:items-center gap-3 sm:gap-5">
                     <img
                         src={product?.images?.[0]}
                         alt={product?.productName}
-                        className="w-[100px] h-[100px] object-cover rounded-lg"
+                        className="w-[80px] h-[80px] sm:w-[100px] sm:h-[100px] object-cover rounded-lg flex-shrink-0"
                     />
-                    <div className="ml-5">
-                        <span className={`text-xs font-semibold uppercase tracking-wider ${getCategoryColor(product?.category)}`}>
+                    <div className="min-w-0 flex-1">
+                        <span className={`text-[10px] sm:text-xs font-semibold uppercase tracking-wider ${getCategoryColor(product?.category)}`}>
                             {product?.category}
                         </span>
-                        <h3 className="text-lg font-medium text-gray-800 mt-1">
+                        <h3 className="text-sm sm:text-lg font-medium text-gray-800 mt-1 line-clamp-2">
                             {product?.productName}
                         </h3>
-                        <p className="text-xs text-gray-400 mt-1">
+                        <p className="text-[10px] sm:text-xs text-gray-400 mt-1">
                             ID: {productId}
                         </p>
-                        <p className="text-xl font-bold text-gray-900 mt-2">
+                        <p className="text-base sm:text-xl font-bold text-gray-900 mt-1 sm:mt-2">
                             LKR.{product?.lastPrice?.toFixed(2) || product?.price?.toFixed(2)}
                         </p>
-                        <p className="text-sm text-gray-500 mt-1">
+                        <p className="text-xs sm:text-sm text-gray-500 mt-0.5 sm:mt-1">
                             Total: <span className="font-semibold text-gray-700">LKR.{((product?.lastPrice || product?.price || 0) * quantity).toFixed(2)}</span>
                         </p>
                     </div>
                 </div>
 
                 {/* Right Section - Quantity Controls and Delete */}
-                <div className="flex items-center gap-4">
+                <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-4 pl-[92px] sm:pl-0">
                     {/* Quantity Controls */}
                     <div className="flex items-center bg-gray-100 rounded-lg">
                         <button
                             onClick={handleDecrement}
-                            className="w-9 h-9 flex items-center justify-center text-gray-500 hover:text-gray-700 hover:bg-gray-200 rounded-l-lg transition-colors"
+                            className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-gray-500 hover:text-gray-700 hover:bg-gray-200 rounded-l-lg transition-colors"
                         >
-                            <FaMinus size={12} />
+                            <FaMinus size={10} className="sm:hidden" />
+                            <FaMinus size={12} className="hidden sm:block" />
                         </button>
-                        <span className="w-10 text-center font-medium text-gray-800">
+                        <span className="w-8 sm:w-10 text-center text-sm sm:text-base font-medium text-gray-800">
                             {quantity}
                         </span>
                         <button
                             onClick={handleIncrement}
-                            className="w-9 h-9 flex items-center justify-center text-gray-500 hover:text-gray-700 hover:bg-gray-200 rounded-r-lg transition-colors"
+                            className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-gray-500 hover:text-gray-700 hover:bg-gray-200 rounded-r-lg transition-colors"
                         >
-                            <FaPlus size={12} />
+                            <FaPlus size={10} className="sm:hidden" />
+                            <FaPlus size={12} className="hidden sm:block" />
                         </button>
                     </div>
 
                     {/* Delete Button */}
                     <button
                         onClick={handleDelete}
-                        className="w-9 h-9 flex items-center justify-center text-red-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                        className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-red-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                     >
-                        <FaTrash size={16} />
+                        <FaTrash size={14} className="sm:hidden" />
+                        <FaTrash size={16} className="hidden sm:block" />
                     </button>
                 </div>
             </div>

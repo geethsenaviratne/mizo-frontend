@@ -1,7 +1,17 @@
 import { Link } from "react-router-dom";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { IoClose } from "react-icons/io5";
+import { useState } from "react";
+import NavSlider from "./navSlider";
 
 export default function Header() {
+  const [isSliderOpen, setIsSliderOpen] = useState(false);
   return (
+    <>
+    {/* Mobile Slider Menu */}
+    {isSliderOpen && <NavSlider onClose={() => setIsSliderOpen(false)} />}
+
+
     <header className="fixed top-0 left-0 right-0 z-50 h-[80px] bg-[#fff3ef] shadow-md flex items-center px-6">
 
       {/* LEFT: LOGO */}
@@ -11,13 +21,42 @@ export default function Header() {
           alt="Mizo Beauty Logo"
           className="w-12 h-12 rounded-full object-cover border-2 border-white shadow cursor-pointer"
         />
-        <span className="font-bold text-lg text-gray-800 hidden sm:block">
+        <span className="font-bold text-lg text-gray-800  sm:block">
           MIZO BEAUTY
         </span>
       </div>
 
-      {/* CENTER: NAV LINKS */}
-      <nav className="flex-1 flex justify-center gap-8">
+      {/* MOBILE: Cart + Hamburger Menu - shows on mobile, hidden on large screens */}
+      <div className="ml-auto lg:hidden flex items-center gap-3">
+        <Link
+          to="/cart"
+          className="p-2 text-gray-700 hover:text-rose-500 transition"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+            />
+          </svg>
+        </Link>
+        <button 
+          onClick={() => setIsSliderOpen(true)}
+          className="p-2 text-gray-700 hover:text-rose-500 transition"
+        >
+          <RxHamburgerMenu className="text-2xl" />
+        </button>
+      </div>
+
+      {/* CENTER: NAV LINKS - absolutely centered */}
+      <nav className="absolute left-1/2 -translate-x-1/2 hidden lg:flex justify-center gap-8">
         <Link
           to="/"
           className="font-medium text-gray-700 hover:text-rose-500 transition"
@@ -45,7 +84,7 @@ export default function Header() {
       </nav>
 
       {/* RIGHT: CART & AUTH BUTTONS */}
-      <div className="flex items-center gap-5">
+      <div className="ml-auto hidden lg:flex items-center gap-5">
         {/* Cart Icon */}
         <Link
           to="/cart"
@@ -88,5 +127,6 @@ export default function Header() {
       </div>
 
     </header>
+    </>
   );
 }
