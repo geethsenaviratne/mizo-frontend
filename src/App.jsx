@@ -6,6 +6,7 @@ import SignupPage from './pages/signupPage'
 import AdminHomePage from './pages/adminHomePage'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
+import { GoogleOAuthProvider } from '@react-oauth/google'
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
     <>
      <BrowserRouter>
      <Toaster/>
+     <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
 
      <Routes paths = "/*">
 
@@ -29,7 +31,7 @@ function App() {
     <Route path = "/*" element = {<HomePage/>}/>
     
      </Routes>
-  
+    </GoogleOAuthProvider>
      </BrowserRouter>
     </>
   )

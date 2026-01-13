@@ -1,14 +1,41 @@
+import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate, Link } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
 
 export default function LoginPage() {
   const navigate = useNavigate();
+  const googlelogin = useGoogleLogin({
+    onSuccess: (res)=>{
+      console.log("Google login success:", res);
+      axios.post(import.meta.env.VITE_BACKEND_URL + "/api/users/google", {
+        token: res.access_token
+      }).then(
+        (res)=>{
+          if(res.data.message == "User created successfully"){
+
+            toast.success("Your account has been created via Google Login");
+        }else{
+          localStorage.setItem("token", res.data.token);
+          if(res.data.user.type === "admin"){
+            navigate("/admin");
+          }else{
+            navigate("/");
+          }
+        }
+      }
+          
+      )
+    }
+  })
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+
+  
 
   async function login() {
     try {
@@ -101,6 +128,23 @@ export default function LoginPage() {
               }`}
             >
               {loading ? "Logging in..." : "LOGIN"}
+            </button>
+
+            {/* Divider */}
+            <div className="flex items-center gap-3 my-4">
+              <div className="flex-1 h-px bg-gray-300"></div>
+              <span className="text-sm text-gray-400">OR</span>
+              <div className="flex-1 h-px bg-gray-300"></div>
+            </div>
+
+            {/* Google Login Button */}
+            <button
+              onClick={() => googlelogin()}
+              disabled={loading}
+              className="w-full py-3 rounded-lg font-semibold border border-gray-300 bg-white hover:bg-gray-50 transition active:scale-95 flex items-center justify-center gap-3 cursor-pointer"
+            >
+              <FcGoogle className="text-xl" />
+              <span className="text-gray-700">Continue with Google</span>
             </button>
           </div>
 
