@@ -37,7 +37,7 @@ export default function ProductCard({ product }) {
             onClick={(e) => handleIconClick(e, "view")}
             className="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center hover:bg-pink-200 transition shadow-md ring-4 ring-white pointer-events-auto"
           >
-            <FiSearch className="text-gray-700" />
+            <FiSearch className="text-[#1e3a5f]" />
           </button>
           <button
           
@@ -45,7 +45,7 @@ export default function ProductCard({ product }) {
             onClick={onAddtoCart}
             className="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center hover:bg-pink-200 transition shadow-md ring-4 ring-white pointer-events-auto"
           >
-            <FiPlus className="text-gray-700" />
+            <FiPlus className="text-[#1e3a5f]" />
           </button>
         </div>
 
@@ -53,23 +53,23 @@ export default function ProductCard({ product }) {
         <div className="mt-4 space-y-1">
 
           {/* PRODUCT NAME */}
-          <h3 className="text-1xl text-gray-800 leading-snug line-clamp-2 font-bold">
+          <h3 className="text-1xl text-[#1e3a5f] leading-snug line-clamp-2 font-bold">
             {product.productName}
           </h3>
 
           {/* BRAND */}
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-[#1e3a5f]">
             {product.altNames?.[0] || "Brand"}
           </p>
 
           {/* PRICE */}
           <div className="flex items-center gap-2 mt-1">
             {product.price > product.lastPrice && (
-              <span className="text-sm text-gray-400 line-through">
+              <span className="text-sm text-[#1e3a5f] line-through">
                 Rs {product.price.toLocaleString()}
               </span>
             )}
-            <span className="text-base font-semibold text-gray-900">
+            <span className="text-base font-semibold text-[#1e3a5f]">
               Rs {product.lastPrice.toLocaleString()}
             </span>
           </div>

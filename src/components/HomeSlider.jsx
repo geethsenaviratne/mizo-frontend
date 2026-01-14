@@ -58,6 +58,9 @@ export default function HomeSlider() {
         </div>
       ))}
 
+      {/* Gradient Overlay for brand consistency */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#1e3a5f]/70 via-[#1e3a5f]/20 to-transparent z-15 pointer-events-none" />
+
       {/* SHOP NOW Button */}
       <Link
         to="/products"

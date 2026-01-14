@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ImageSlider from "../../components/imageSlider";
 import { FaTruck, FaCheckCircle, FaLock, FaGlobeAsia } from "react-icons/fa";
 import { addToCart } from "../../utils/cartFunction";
@@ -12,6 +12,7 @@ export default function ProductOverview() {
     const productId = params.id;
     const [product, setProduct] = useState(null);
     const [status, setStatus] = useState("loading"); // "loading", "found", "notfound"
+    const navigate = useNavigate()
 
     useEffect(() => {
         axios
@@ -29,6 +30,14 @@ export default function ProductOverview() {
     function onAddtoCart() { 
       addToCart(product.productId, 1);
       toast.success(product.productId + " Added to cart 🛒");
+    }
+
+    function onByNowClick(){
+      navigate ("/shipping" , {
+        state: { 
+            items: [{ productId: product.productId, qty: 1 }]
+        }
+      })
     }
 
     return (
@@ -136,7 +145,7 @@ export default function ProductOverview() {
             Add to cart
           </button>
 
-          <button className="w-full bg-rose-200 hover:bg-rose-300 py-2.5 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition cursor-pointer">
+          <button onClick={onByNowClick} className="w-full bg-rose-200 hover:bg-rose-300 py-2.5 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition cursor-pointer">
             Buy it now
           </button>
         </div>

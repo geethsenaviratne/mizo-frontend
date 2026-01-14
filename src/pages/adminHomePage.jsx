@@ -6,6 +6,7 @@ import { FaUsers } from "react-icons/fa";
 import AdminProductsPage from "./admin/adminProductsPage";
 import AddProductForm from "./admin/addProductForm";
 import EditProductForm from "./admin/editProductForm";
+import AdminOrderPage from "./admin/adminOrderPage";
 
 export default function AdminHomePage() {
   return (
@@ -91,8 +92,8 @@ export default function AdminHomePage() {
             />
 
             <Route
-              path="orders"
-              element={<h1 className="text-2xl font-bold">Orders</h1>}
+              path="/orders"
+              element={<AdminOrderPage/>}
             />
 
             <Route

@@ -21,7 +21,7 @@ export default function Header() {
           alt="Mizo Beauty Logo"
           className="w-12 h-12 rounded-full object-cover border-2 border-white shadow cursor-pointer"
         />
-        <span className="font-bold text-lg text-gray-800  sm:block">
+        <span className="font-bold text-lg text-[#1e3a5f]  sm:block">
           MIZO BEAUTY
         </span>
       </div>
@@ -30,7 +30,7 @@ export default function Header() {
       <div className="ml-auto lg:hidden flex items-center gap-3">
         <Link
           to="/cart"
-          className="p-2 text-gray-700 hover:text-rose-500 transition"
+          className="p-2 text-[#1e3a5f] hover:text-rose-500 transition"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -49,7 +49,7 @@ export default function Header() {
         </Link>
         <button 
           onClick={() => setIsSliderOpen(true)}
-          className="p-2 text-gray-700 hover:text-rose-500 transition"
+          className="p-2 text-[#1e3a5f] hover:text-rose-500 transition"
         >
           <RxHamburgerMenu className="text-2xl" />
         </button>
@@ -59,25 +59,25 @@ export default function Header() {
       <nav className="absolute left-1/2 -translate-x-1/2 hidden lg:flex justify-center gap-8">
         <Link
           to="/"
-          className="font-medium text-gray-700 hover:text-rose-500 transition"
+          className="font-medium text-[#1e3a5f] hover:text-rose-500 transition"
         >
           Home
         </Link>
         <Link
           to="/products"
-          className="font-medium text-gray-700 hover:text-rose-500 transition"
+          className="font-medium text-[#1e3a5f] hover:text-rose-500 transition"
         >
           Products
         </Link>
         <Link
           to="/about"
-          className="font-medium text-gray-700 hover:text-rose-500 transition"
+          className="font-medium text-[#1e3a5f] hover:text-rose-500 transition"
         >
           About Us
         </Link>
         <Link
           to="/contact"
-          className="font-medium text-gray-700 hover:text-rose-500 transition"
+          className="font-medium text-[#1e3a5f] hover:text-rose-500 transition"
         >
           Contact Us
         </Link>
@@ -88,7 +88,7 @@ export default function Header() {
         {/* Cart Icon */}
         <Link
           to="/cart"
-          className="relative flex items-center gap-1 text-gray-700 hover:text-rose-500 transition group"
+          className="relative flex items-center gap-1 text-[#1e3a5f] hover:text-rose-500 transition group"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -111,7 +111,7 @@ export default function Header() {
 
         <Link
           to="/login"
-          className="text-gray-700 font-medium hover:text-rose-500 transition"
+          className="text-[#1e3a5f] font-medium hover:text-rose-500 transition"
         >
           Login
         </Link>

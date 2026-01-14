@@ -1,5 +1,5 @@
 import { useEffect, useCallback, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { loadCart } from "../../utils/cartFunction";
 import { CartCard } from "../../components/cartCard";
 import axios from "axios";
@@ -13,6 +13,8 @@ export default function Cart() {
     const [total, setTotal] = useState(0);
     const [labeledTotal, setLabeledTotal] = useState(0);
     const location = useLocation();
+
+    const navigate = useNavigate();
 
     const fetchQuote = useCallback(() => {
         const currentCart = loadCart();
@@ -50,25 +52,11 @@ export default function Cart() {
     }, [fetchQuote]);
 
     function onOrderCheckoutClick() {
-        const token = localStorage.getItem("token");
-        if (!token) {
-            return toast.error("Please login to proceed to checkout");
-        }
-
-        axios.post(
-            import.meta.env.VITE_BACKEND_URL + "/api/orders",
-            {
-                orderdItems: cart,
-                name: "geeth",
-                address: "75/1, Kandy road, Malabe",
-                phone: "0706633356",
-            },
-            {
-                headers: { Authorization: "Bearer " + token },
+        navigate("/shipping" , {
+            state: { 
+                items: loadCart()
             }
-        ).then((res) => {
-            console.log(res.data);
-        });
+        })
     }
 
     const discount = labeledTotal - total;

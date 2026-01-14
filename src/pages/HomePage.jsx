@@ -12,6 +12,9 @@ import ProductCard from "../components/productCard";
 import ReviewSlider from "../components/ReviewSlider";
 import Footer from "../components/Footer";
 import AboutPage from "./about";
+import ContactPage from "./contact";
+import ShippingPage from "./home/shipping";
+import MyOrders from "./home/orders";
 
 // Home Content Component with Slider and New Arrivals
 function HomeContent() {
@@ -129,7 +132,7 @@ function HomeContent() {
                   </svg>
                 </Link>
                 <Link
-                  to="/products"
+                  to="/about"
                   className="inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-gray-800 font-medium px-6 py-3 border border-gray-300 transition-colors"
                 >
                   Learn More
@@ -222,8 +225,11 @@ export default function HomePage() {
           <Route path="/products" element={<ProductPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/shipping" element={<ShippingPage />} />
+          <Route path="/orders" element={<MyOrders />} />
           <Route path="/productInfo/:id" element={<ProductOverview />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
         </Routes>
       </div>
 

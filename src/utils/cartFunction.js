@@ -39,6 +39,8 @@ export function saveCart(cart) {
 
 export function clearCart() {
     localStorage.removeItem('cart');
+    // Dispatch custom event to notify cart updates
+    window.dispatchEvent(new Event('cartUpdated'));
 }
 
 export function deleteItem(productId) {
