@@ -7,8 +7,42 @@ import AdminProductsPage from "./admin/adminProductsPage";
 import AddProductForm from "./admin/addProductForm";
 import EditProductForm from "./admin/editProductForm";
 import AdminOrderPage from "./admin/adminOrderPage";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function AdminHomePage() {
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    navigate("/login");
+    return;
+    
+  }
+  axios.get(import.meta.env.VITE_BACKEND_URL + "/api/users",{
+    headers: {
+      Authorization: `Bearer ${token}`
+    },
+  }).then((res) => {
+    console.log(res.data);
+    if(res.data.type !== "admin"){
+      navigate("/login");
+    }else{
+      setUser(res.data);
+    }
+
+
+  }).catch((err)=>{
+    console.error(err)
+    toast.error("Error fetching user data")
+    navigate("/login");
+  })
+  
+
+  },[])
   return (
     <div className="min-h-screen flex bg-[#fff3ef]">
 
@@ -69,7 +103,7 @@ export default function AdminHomePage() {
       {/* MAIN CONTENT */}
       <main className="flex-1 p-8">
         <div className="bg-white rounded-2xl shadow-lg p-8 min-h-full">
-
+        {user!=null &&
           <Routes>
 
             <Route
@@ -163,7 +197,15 @@ export default function AdminHomePage() {
               }
             />
 
-          </Routes>
+          </Routes>}
+          {
+            user == null && <div className="w-full min-h-[calc(100vh-80px)] flex flex-col items-center justify-center gap-5 bg-[#f9fafb]">
+    
+    <div className="relative">
+     <div className="animate-spin rounded-full h-20 w-20 border-4 border-gray-200 border-b-rose-400"></div>
+    </div>
+  </div>}
+          
         </div>
       </main>
 
