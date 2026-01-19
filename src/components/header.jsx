@@ -3,6 +3,8 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { IoClose } from "react-icons/io5";
 import { useState } from "react";
 import NavSlider from "./navSlider";
+import UserData from "./userData";
+
 
 export default function Header() {
   const [isSliderOpen, setIsSliderOpen] = useState(false);
@@ -109,19 +111,9 @@ export default function Header() {
 
         <div className="w-px h-6 bg-gray-300"></div>
 
-        <Link
-          to="/login"
-          className="text-[#1e3a5f] font-medium hover:text-rose-500 transition"
-        >
-          Login
-        </Link>
+        <div><UserData/></div>
 
-        <Link
-          to="/signup"
-          className="px-4 py-2 rounded-lg bg-rose-400 text-white font-semibold hover:bg-rose-500 transition"
-        >
-          Sign Up
-        </Link>
+       
 
         
       </div>

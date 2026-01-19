@@ -2,19 +2,19 @@ export default function Footer() {
   return (
     <div className="w-full mt-18">
       {/* Newsletter Subscription Section */}
-      <div className="px-6 py-8 bg-gray-100 border-t border-gray-200">
+      <div className="px-4 sm:px-6 py-8 bg-gray-100 border-t border-gray-200">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <p className="text-gray-700 text-center md:text-left">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-6">
+            <p className="text-gray-700 text-center md:text-left text-base sm:text-lg">
               Subscribe & be the first to receive new releases, special offers, and more
             </p>
-            <div className="flex w-full md:w-auto">
+            <div className="flex flex-col sm:flex-row w-full md:w-auto gap-2 sm:gap-0">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 md:w-64 px-4 py-3 border border-gray-300 rounded-l-md focus:outline-none focus:ring-1 focus:ring-[#1e3a5f] focus:border-[#1e3a5f]"
+                className="flex-1 sm:w-64 px-4 py-3 border border-gray-300 rounded-t-md sm:rounded-t-none sm:rounded-l-md focus:outline-none focus:ring-1 focus:ring-[#1e3a5f] focus:border-[#1e3a5f]"
               />
-              <button className="px-6 py-3 bg-[#f8d7d0] hover:bg-[#f0c5bc] text-gray-800 font-medium rounded-r-md transition-colors">
+              <button className="px-6 py-3 bg-[#f8d7d0] hover:bg-[#f0c5bc] text-gray-800 font-medium rounded-b-md sm:rounded-b-none sm:rounded-r-md transition-colors">
                 Subscribe
               </button>
             </div>
@@ -23,9 +23,9 @@ export default function Footer() {
       </div>
 
       {/* Footer */}
-      <footer className="px-6 py-12 bg-[#f5f5f5]">
+      <footer className="px-4 sm:px-6 py-12 bg-[#f5f5f5]">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12 text-center sm:text-left">
             {/* Brand Section */}
             <div>
               <h3 className="text-xl font-bold text-[#1e3a5f] mb-4">MIZO BEAUTY</h3>

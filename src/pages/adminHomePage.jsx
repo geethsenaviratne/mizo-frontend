@@ -10,6 +10,7 @@ import AdminOrderPage from "./admin/adminOrderPage";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export default function AdminHomePage() {
   const [user, setUser] = useState(null);
@@ -18,6 +19,7 @@ export default function AdminHomePage() {
   useEffect(() => {
   const token = localStorage.getItem("token");
   if (!token) {
+    toast.error("Please login to access admin panel")
     navigate("/login");
     return;
     

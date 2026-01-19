@@ -8,34 +8,30 @@ import { FcGoogle } from "react-icons/fc";
 export default function LoginPage() {
   const navigate = useNavigate();
   const googlelogin = useGoogleLogin({
-    onSuccess: (res)=>{
+    onSuccess: (res) => {
       console.log("Google login success:", res);
       axios.post(import.meta.env.VITE_BACKEND_URL + "/api/users/google", {
         token: res.access_token
       }).then(
-        (res)=>{
-          if(res.data.message == "User created successfully"){
-
+        (res) => {
+          if (res.data.message == "User created successfully") {
             toast.success("Your account has been created via Google Login");
-        }else{
-          localStorage.setItem("token", res.data.token);
-          if(res.data.user.type === "admin"){
-            navigate("/admin");
-          }else{
-            navigate("/");
+          } else {
+            localStorage.setItem("token", res.data.token);
+            if (res.data.user.type === "admin") {
+              navigate("/admin");
+            } else {
+              navigate("/");
+            }
           }
         }
-      }
-          
       )
     }
-  })
+  });
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-
-  
 
   async function login() {
     try {
@@ -67,48 +63,60 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex">
+    <div
+      className="min-h-screen w-full flex items-stretch relative"
+      style={{
+        backgroundImage: 'url(/login.jpg)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
+      {/* Overlay for darkening background if needed */}
+      <div className="absolute inset-0 bg-black/60 pointer-events-none" />
 
-      {/* LEFT IMAGE SECTION */}
-      <div className="hidden lg:flex w-1/2">
-        <img
-          src="/login.jpg"
-          alt="Login"
-          className="w-full h-full object-cover"
-        />
+      {/* Left Info Section */}
+      <div className="hidden md:flex flex-col justify-center items-start w-1/2 pl-16 z-10 relative">
+        <div className="max-w-lg">
+          <h1 className="text-6xl font-extrabold text-white mb-4 drop-shadow-lg">
+            Glow on. <span className="text-rose-300">Shop on.</span>
+          </h1>
+          <p className="text-2xl text-white/90 mb-8 drop-shadow">
+            Sign in to explore exclusive offers, track your orders, and save your favorite beauty picks. Beautiful shopping, made simple.
+          </p>
+        </div>
       </div>
 
-      {/* RIGHT FORM SECTION */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center bg-[#fff3ef] px-6">
-        <div className="w-full max-w-md text-center">
-
-          {/* LOGO */}
-          <div className="flex justify-center mb-6">
-            <img
-              src="/logo.jpg"
-              alt="Mizo Beauty Logo"
-              className="w-28 h-28 rounded-full object-cover shadow-lg border-4 border-white"
-            />
-          </div>
-
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">
-            Welcome to MIZO BEAUTY
-          </h1>
-          <p className="text-gray-500 mb-8">
-            Login to your MIZO BEAUTY account
+      {/* Login Card on Right */}
+      <div className="w-full md:w-[420px] lg:w-[720px] flex items-center justify-center ml-auto md:mr-29 relative z-20">
+        <div
+          className="w-full max-w-md rounded-2xl shadow-2xl p-8 flex flex-col items-center"
+          style={{
+            background: 'rgba(255,255,255,0.25)',
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
+            border: '1px solid rgba(255,255,255,0.3)',
+          }}
+        >
+          {/* Logo */}
+          <img
+            src="/logo.jpg"
+            alt="Mizo Beauty Logo"
+            className="w-20 h-20 rounded-full object-cover shadow-lg border-4 border-white mb-4"
+          />
+          <h2 className="text-2xl font-bold text-gray-800 mb-2">Welcome to MIZO BEAUTY</h2>
+          <p className="text-white mb-6 text-center">
+            Log in to continue your beauty journey and checkout faster.
           </p>
-
-          <div className="space-y-4 text-left">
-
+          <div className="w-full space-y-4 text-left">
             <input
               type="email"
-              placeholder="Email"
+              placeholder="Email address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               disabled={loading}
               className="w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-rose-300"
             />
-
             <input
               type="password"
               placeholder="Password"
@@ -117,7 +125,6 @@ export default function LoginPage() {
               disabled={loading}
               className="w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-rose-300"
             />
-
             <button
               onClick={login}
               disabled={loading}
@@ -127,16 +134,14 @@ export default function LoginPage() {
                   : "bg-rose-400 hover:bg-rose-500"
               }`}
             >
-              {loading ? "Logging in..." : "LOGIN"}
+              {loading ? "Logging in..." : "Login"}
             </button>
-
             {/* Divider */}
             <div className="flex items-center gap-3 my-4">
               <div className="flex-1 h-px bg-gray-300"></div>
-              <span className="text-sm text-gray-400">OR</span>
+              <span className="text-sm text-white">OR</span>
               <div className="flex-1 h-px bg-gray-300"></div>
             </div>
-
             {/* Google Login Button */}
             <button
               onClick={() => googlelogin()}
@@ -147,17 +152,15 @@ export default function LoginPage() {
               <span className="text-gray-700">Continue with Google</span>
             </button>
           </div>
-
-          <p className="text-sm text-center text-gray-500 mt-6">
-            Don’t have an account?{" "}
+          <p className="text-sm text-center text-white mt-6">
+            New to CBC?{' '}
             <Link
               to="/signup"
-              className="text-rose-500 font-medium hover:underline"
+              className="text-black font-medium hover:underline"
             >
-              Sign up
+              Create your account
             </Link>
           </p>
-
         </div>
       </div>
     </div>
