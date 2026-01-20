@@ -11,6 +11,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import AdminUsersPage from "./admin/usersPage";
 
 export default function AdminHomePage() {
   const [user, setUser] = useState(null);
@@ -91,11 +92,11 @@ export default function AdminHomePage() {
           </Link>
 
           <Link
-            to="/admin/customers"
+            to="/admin/users"
             className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-rose-100 transition"
           >
             <FaUsers className="text-xl text-rose-500" />
-            Customers
+            Users
           </Link>
 
         </nav>
@@ -133,9 +134,11 @@ export default function AdminHomePage() {
             />
 
             <Route
-              path="customers"
-              element={<h1 className="text-2xl font-bold">Customers</h1>}
+              path="/users"
+              element={<AdminUsersPage />}
             />
+
+            
 
             {/* DEFAULT ADMIN HOME */}
             <Route

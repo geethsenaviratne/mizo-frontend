@@ -125,6 +125,12 @@ export default function LoginPage() {
               disabled={loading}
               className="w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-rose-300"
             />
+              {/* Forgot Password Link */}
+              <div className="w-full text-right mb-2">
+                <Link to="/forgot-password" className="text-sm text-rose-400 hover:underline font-medium">
+                  Forgot Password?
+                </Link>
+              </div>
             <button
               onClick={login}
               disabled={loading}

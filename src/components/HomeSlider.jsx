@@ -41,7 +41,7 @@ export default function HomeSlider() {
   };
 
   return (
-    <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[700px] overflow-hidden">
+    <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden">
       {/* Slides Container */}
       {images.map((image, index) => (
         <div

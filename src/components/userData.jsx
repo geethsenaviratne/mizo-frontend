@@ -92,7 +92,7 @@ export default function UserData() {
                 {/* AVATAR */}
                 <div className="w-9 h-9 rounded-full bg-white overflow-hidden">
                     <img
-                        src={user.profilePicture || "/user.png"}
+                        src={user.profilePicture && user.profilePicture.trim() !== "" ? user.profilePicture : "/user.png"}
                         alt={user.firstName}
                         className="w-full h-full object-cover"
                         onError={e => { e.target.onerror = null; e.target.src = "/user.png"; }}
@@ -169,7 +169,7 @@ export default function UserData() {
                                         </button>
                                         <button
                                             onClick={logout}
-                                            className="flex-1 px-4 py-2 bg-rose-500 text-white rounded-lg hover:bg-rose-600 transition font-medium shadow"
+                                            className="flex-1 px-4 py-2 bg-rose-400 text-white rounded-lg hover:bg-rose-500 transition font-medium shadow"
                                         >
                                             Logout
                                         </button>

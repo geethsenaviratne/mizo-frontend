@@ -157,7 +157,7 @@ export default function NavSlider({ onClose }) {
                           </button>
                           <button
                             onClick={logout}
-                            className="flex-1 px-4 py-2 bg-rose-500 text-white rounded-lg hover:bg-rose-600 transition font-medium shadow"
+                            className="flex-1 px-4 py-2 bg-rose-400 text-white rounded-lg hover:bg-rose-500 transition font-medium shadow"
                           >
                             Logout
                           </button>

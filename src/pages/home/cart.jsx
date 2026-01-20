@@ -89,7 +89,7 @@ export default function Cart() {
                                 Discover our premium beauty products.
                             </p>
                             <button
-                                onClick={() => window.history.back()}
+                                onClick={() => navigate('/products')}
                                 className="mt-6 px-6 py-3 bg-rose-300 hover:bg-rose-400 rounded-xl font-semibold transition"
                             >
                                 Continue Shopping
