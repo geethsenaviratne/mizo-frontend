@@ -1,5 +1,5 @@
 
-# CBC Frontend
+# Cosmetic E-Commerce Web App
 
 ![Website Preview](public/web.png)
 
@@ -11,7 +11,7 @@ This is the frontend for the CBC project, built with React and Vite.
 
 ## Backend Repository
 
-[Go to CBC Backend Repository](https://github.com/geethsenaviratne/cbc-backend.git)
+[Go to  Backend Repository](https://github.com/geethsenaviratne/cbc-backend.git)
 
 ## Getting Started
 
