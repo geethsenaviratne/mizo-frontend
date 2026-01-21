@@ -37,7 +37,7 @@ CBC (Customer Buying Center) is a modern e-commerce web application designed to 
 - `public/` - Static assets (images, favicon, etc.)
 
 ## How to Use
-1. Visit the [Live Demo](https://cbc-frontend-sept.vercel.app/)
+1. Visit the [Live Demo](https://mizo-beauty.vercel.app/)
 2. Sign up or log in (Google OAuth available)
 3. Browse products, add to cart, and place orders
 4. Admins can log in to manage products and view orders
@@ -54,7 +54,7 @@ This project is licensed under the MIT License.
 
 ## Live Demo
 
-[View the deployed frontend](https://cbc-frontend-sept.vercel.app/)
+[View the deployed frontend](https://mizo-beauty.vercel.app/)
 
 ## Backend Repository
 
