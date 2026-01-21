@@ -1,5 +1,5 @@
 
-# CBC Frontend
+# Cosmetic E-Commerce Web App
 
 ![Website Preview](public/web.png)
 
@@ -58,7 +58,7 @@ This project is licensed under the MIT License.
 
 ## Backend Repository
 
-[Go to CBC Backend Repository](https://github.com/geethsenaviratne/cbc-backend.git)
+[Go to  Backend Repository](https://github.com/geethsenaviratne/cbc-backend.git)
 
 ## Getting Started
 
