@@ -50,7 +50,7 @@ export default function NavSlider({ onClose }) {
           <div className="flex items-center justify-between px-4 py-3 border-b border-gray-300/50 bg-[#fff3ef]/80 backdrop-blur">
             <div className="flex items-center gap-2">
               <img
-                src="/logo.jpg"   // <-- your logo path
+                src="/logo.jpg"   
                 alt="Mizo Beauty"
                 className="w-9 h-9 rounded-full object-cover"
               />
@@ -98,7 +98,7 @@ export default function NavSlider({ onClose }) {
           ) : (
             <div className="px-6 py-4 border-b border-gray-300/50">
               <p className="text-sm text-gray-600">
-                Welcome 👋 Please login to continue
+                Welcome! Please login to continue
               </p>
             </div>
           )}

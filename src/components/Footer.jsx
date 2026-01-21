@@ -25,7 +25,7 @@ export default function Footer() {
       {/* Footer */}
       <footer className="px-4 sm:px-6 py-12 bg-[#f5f5f5]">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-12 text-center sm:text-left">
+          <div className="flex flex-row flex-wrap gap-8 mb-12 text-center sm:text-left justify-center">
             {/* Brand Section */}
             <div>
               <h3 className="text-xl font-bold text-[#1e3a5f] mb-4">MIZO BEAUTY</h3>
@@ -63,32 +63,32 @@ export default function Footer() {
             </div>
 
             {/* About Links */}
-            <div>
+            <div className="flex-1">
               <h4 className="text-sm font-semibold text-[#1e3a5f] mb-4 tracking-wider">ABOUT</h4>
-              <ul className="space-y-3">
-                <li><a href="#" className="text-gray-500 text-sm hover:text-[#1e3a5f] transition-colors">About Us</a></li>
-                <li><a href="#" className="text-gray-500 text-sm hover:text-[#1e3a5f] transition-colors">Careers</a></li>
+              <ul className="flex flex-col items-center sm:items-start space-y-3">
+                <li><a href="/about" className="text-gray-500 text-sm hover:text-[#1e3a5f] transition-colors">About Us</a></li>
+                <li><a href="/about" className="text-gray-500 text-sm hover:text-[#1e3a5f] transition-colors">Careers</a></li>
                 <li><a href="#" className="text-gray-500 text-sm hover:text-[#1e3a5f] transition-colors">Press</a></li>
               </ul>
             </div>
 
             {/* Support Links */}
-            <div>
+            <div className="flex-1">
               <h4 className="text-sm font-semibold text-[#1e3a5f] mb-4 tracking-wider">SUPPORT</h4>
-              <ul className="space-y-3">
-                <li><a href="#" className="text-gray-500 text-sm hover:text-[#1e3a5f] transition-colors">Contact Us</a></li>
+              <ul className="flex flex-col items-center sm:items-start space-y-3">
+                <li><a href="/contact" className="text-gray-500 text-sm hover:text-[#1e3a5f] transition-colors">Contact Us</a></li>
                 <li><a href="#" className="text-gray-500 text-sm hover:text-[#1e3a5f] transition-colors">FAQ</a></li>
-                <li><a href="#" className="text-gray-500 text-sm hover:text-[#1e3a5f] transition-colors">Shipping Info</a></li>
+                <li><a href="/cart" className="text-gray-500 text-sm hover:text-[#1e3a5f] transition-colors">Shipping Info</a></li>
               </ul>
             </div>
 
             {/* Legal Links */}
-            <div>
+            <div className="flex-1">
               <h4 className="text-sm font-semibold text-[#1e3a5f] mb-4 tracking-wider">LEGAL</h4>
-              <ul className="space-y-3">
+              <ul className="flex flex-col items-center sm:items-start space-y-3">
                 <li><a href="#" className="text-gray-500 text-sm hover:text-[#1e3a5f] transition-colors">Privacy Policy</a></li>
                 <li><a href="#" className="text-gray-500 text-sm hover:text-[#1e3a5f] transition-colors">Terms of Service</a></li>
-                <li><a href="#" className="text-gray-500 text-sm hover:text-[#1e3a5f] transition-colors">Returns</a></li>
+                <li><a href="/" className="text-gray-500 text-sm hover:text-[#1e3a5f] transition-colors">Returns</a></li>
               </ul>
             </div>
           </div>

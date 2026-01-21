@@ -89,7 +89,7 @@ function AdminUsersPage() {
       {/* Header */}
       <div className="mb-8 flex items-start justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-800">User Management</h1>
+          <h1 className="text-3xl font-bold text-gray-800">👥 User Management</h1>
           <p className="text-gray-500 mt-1">Manage all users in your system</p>
         </div>
         {/* Optionally, you can add a button to add a new user if needed */}
@@ -174,8 +174,8 @@ function AdminUsersPage() {
       )}
       {/* Block/Unblock Confirmation Modal */}
       {isBlockConfirmVisible && userBlock && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30 z-50">
-          <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-xs">
+        <div className="fixed inset-0 flex items-center justify-center backdrop-blur-sm bg-transparent z-50">
+          <div className="bg-rose-100 rounded-lg shadow-lg p-6 w-full max-w-xs">
             <h2 className="text-lg font-semibold mb-4 text-gray-800">{userBlock.isBlocked ? "Unblock" : "Block"} User</h2>
             <p className="mb-4 text-gray-600">Are you sure you want to {userBlock.isBlocked ? "unblock" : "block"} <span className="font-bold">{userBlock.email}</span>?</p>
             <div className="flex justify-end gap-2">

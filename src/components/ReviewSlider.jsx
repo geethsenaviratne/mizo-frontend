@@ -161,11 +161,11 @@ export default function ReviewSlider() {
         <h3 className="text-4xl font-serif text-white text-center mb-12 font-bold">What Our Customers Think</h3>
 
         {/* Testimonials Cards in Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 justify-items-center">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8 justify-items-center">
           {testimonials.slice(0, 4).map((testimonial, index) => (
             <div
               key={testimonial.id}
-              className="bg-[#355072] rounded-xl shadow-lg p-8 flex flex-col items-center w-full max-w-xs min-h-[260px]"
+              className="bg-[#355072] rounded-xl shadow-lg p-4 sm:p-8 flex flex-col items-center w-full max-w-xs min-h-[260px]"
             >
               {/* Icon */}
               <div className="bg-[#f8d7d0] rounded-full w-16 h-16 flex items-center justify-center mb-4">

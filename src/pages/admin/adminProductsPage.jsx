@@ -46,7 +46,7 @@ export default function AdminProductsPage() {
   {/* Left side: Title & description */}
   <div>
     <h1 className="text-3xl font-bold text-gray-800">
-      Products Management
+      📦 Products Management
     </h1>
     <p className="text-gray-500 mt-1">
       Manage all products available in your inventory

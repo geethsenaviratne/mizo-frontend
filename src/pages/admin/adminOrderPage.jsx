@@ -71,11 +71,11 @@ export default function AdminOrderPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 px-4">
+        <div className="min-h-screen">
             <div className="max-w-5xl mx-auto">
 
                 {/* HEADER */}
-                <h1 className="text-3xl font-bold text-gray-800 mb-1 mt-6">Orders Management</h1>
+                <h1 className="text-3xl font-bold text-gray-800 mb-1 mt-6"> 🧾 Orders Management</h1>
                 <p className="text-gray-500 mb-8">Manage and track all customer orders in your system</p>
 
                 {/* LOADING */}
@@ -95,26 +95,28 @@ export default function AdminOrderPage() {
                 {/* ORDERS TABLE */}
                 {!ordersLoading && (
                     <div className="bg-white rounded-2xl shadow overflow-x-auto">
-                        <table className="min-w-full">
+                        <table className="min-w-full text-xs md:text-sm">
                             <thead>
                                 <tr className="bg-rose-50">
-                                    <th className="px-4 py-3 text-left text-sm font-extrabold text-gray-700 tracking-wide uppercase">ORDER ID</th>
-                                    <th className="px-4 py-3 text-left text-sm font-extrabold text-gray-700 tracking-wide uppercase">CUSTOMER</th>
-                                    <th className="px-4 py-3 text-left text-sm font-extrabold text-gray-700 tracking-wide uppercase">DATE</th>
-                                    <th className="px-4 py-3 text-left text-sm font-extrabold text-gray-700 tracking-wide uppercase">STATUS</th>
-                                    <th className="px-4 py-3 text-left text-sm font-extrabold text-gray-700 tracking-wide uppercase">TOTAL (LKR)</th>
-                                    <th className="px-4 py-3 text-left text-sm font-extrabold text-gray-700 tracking-wide uppercase">ACTIONS</th>
+                                    <th className="px-2 md:px-4 py-2 md:py-3 text-left font-extrabold text-gray-700 tracking-wide uppercase">ORDER ID</th>
+                                    <th className="px-2 md:px-4 py-2 md:py-3 text-left font-extrabold text-gray-700 tracking-wide uppercase">CUSTOMER</th>
+                                    <th className="px-2 md:px-4 py-2 md:py-3 text-left font-extrabold text-gray-700 tracking-wide uppercase">EMAIL</th>
+                                    <th className="px-2 md:px-4 py-2 md:py-3 text-left font-extrabold text-gray-700 tracking-wide uppercase">DATE</th>
+                                    <th className="px-2 md:px-4 py-2 md:py-3 text-left font-extrabold text-gray-700 tracking-wide uppercase">STATUS</th>
+                                    <th className="px-2 md:px-4 py-2 md:py-3 text-left font-extrabold text-gray-700 tracking-wide uppercase">TOTAL (LKR)</th>
+                                    <th className="px-2 md:px-4 py-2 md:py-3 text-left font-extrabold text-gray-700 tracking-wide uppercase">ACTIONS</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {orders.map((order) => (
                                     <tr key={order.orderId} className="border-b last:border-b-0 hover:bg-gray-50 transition">
-                                        <td className="px-4 py-3 font-semibold whitespace-nowrap">{order.orderId}</td>
-                                        <td className="px-4 py-3 whitespace-nowrap">{order.name}</td>
-                                        <td className="px-4 py-3 whitespace-nowrap">{new Date(order.date).toLocaleDateString()}</td>
-                                        <td className="px-4 py-3 whitespace-nowrap">
+                                        <td className="px-2 md:px-4 py-2 md:py-3 font-semibold whitespace-nowrap">{order.orderId}</td>
+                                        <td className="px-2 md:px-4 py-2 md:py-3 whitespace-nowrap">{order.name}</td>
+                                        <td className="px-2 md:px-4 py-2 md:py-3 whitespace-nowrap max-w-[120px] truncate">{order.email}</td>
+                                        <td className="px-2 md:px-4 py-2 md:py-3 whitespace-nowrap">{new Date(order.date).toLocaleDateString()}</td>
+                                        <td className="px-2 md:px-4 py-2 md:py-3 whitespace-nowrap">
                                             <span
-                                                className={`px-3 py-1 rounded-full text-xs font-semibold capitalize
+                                                className={`px-2 md:px-3 py-1 rounded-full text-xs font-semibold capitalize
                                                     ${
                                                         order.status === "completed"
                                                             ? "bg-green-100 text-green-700"
@@ -129,18 +131,18 @@ export default function AdminOrderPage() {
                                                 {order.status}
                                             </span>
                                         </td>
-                                        <td className="px-4 py-3 font-bold text-rose-600 whitespace-nowrap">{calculateTotal(order.orderdItems).toFixed(2)}</td>
-                                        <td className="px-4 py-3 whitespace-nowrap">
-                                            <div className="flex gap-2">
+                                        <td className="px-2 md:px-4 py-2 md:py-3 font-bold text-rose-600 whitespace-nowrap">{calculateTotal(order.orderdItems).toFixed(2)}</td>
+                                        <td className="px-2 md:px-4 py-2 md:py-3 whitespace-nowrap">
+                                            <div className="flex gap-1 md:gap-2">
                                                 <button
                                                     onClick={() => openView(order)}
-                                                    className="px-3 py-1 border rounded hover:bg-gray-50 text-xs"
+                                                    className="px-2 md:px-3 py-1 border rounded hover:bg-gray-50 text-xs"
                                                 >
                                                     View
                                                 </button>
                                                 <button
                                                     onClick={() => openManage(order)}
-                                                    className="px-3 py-1 bg-rose-500 text-white rounded hover:bg-rose-600 text-xs"
+                                                    className="px-2 md:px-3 py-1 bg-rose-500 text-white rounded hover:bg-rose-600 text-xs"
                                                 >
                                                     Manage
                                                 </button>
@@ -150,6 +152,7 @@ export default function AdminOrderPage() {
                                 ))}
                             </tbody>
                         </table>
+                        <div className="md:hidden text-xs text-gray-400 px-2 py-1">Scroll horizontally to see more columns</div>
                     </div>
                 )}
             </div>
@@ -157,16 +160,16 @@ export default function AdminOrderPage() {
             {/* ================= MODAL ================= */}
             {selectedOrder && (
                 <div
-                    className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center px-4"
+                    className="fixed inset-0 z-50 flex items-center justify-center px-2 md:px-4 backdrop-blur-sm bg-transparent"
                     onClick={() => setSelectedOrder(null)}
                 >
                     <div
-                        className="bg-white max-w-3xl w-full rounded-2xl shadow-xl p-6 max-h-[90vh] overflow-y-auto"
+                        className="bg-white w-full max-w-lg md:max-w-3xl rounded-2xl shadow-xl p-3 md:p-6 max-h-[90vh] overflow-y-auto"
                         onClick={(e) => e.stopPropagation()}
                     >
                         {/* HEADER */}
-                        <div className="flex justify-between items-center mb-6">
-                            <h2 className="text-xl font-bold">
+                        <div className="flex justify-between items-center mb-4 md:mb-6">
+                            <h2 className="text-lg md:text-xl font-bold">
                                 {mode === "view"
                                     ? "Order Details"
                                     : "Manage Order"}
@@ -180,7 +183,7 @@ export default function AdminOrderPage() {
                         </div>
 
                         {/* ORDER INFO */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm mb-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4 text-xs md:text-sm mb-4 md:mb-6">
                             <p><strong>Order ID:</strong> {selectedOrder.orderId}</p>
                             <p><strong>Status:</strong> {selectedOrder.status}</p>
                             <p><strong>Date:</strong> {new Date(selectedOrder.date).toLocaleString()}</p>
@@ -198,24 +201,24 @@ export default function AdminOrderPage() {
                         </div>
 
                         {/* PRODUCTS */}
-                        <h3 className="font-semibold mb-3">Products</h3>
-                        <div className="space-y-4">
+                        <h3 className="font-semibold mb-2 md:mb-3">Products</h3>
+                        <div className="space-y-2 md:space-y-4">
                             {selectedOrder.orderdItems.map((item, idx) => (
                                 <div
                                     key={idx}
-                                    className="flex items-center gap-4 border rounded-lg p-3"
+                                    className="flex flex-col md:flex-row items-center gap-2 md:gap-4 border rounded-lg p-2 md:p-3"
                                 >
                                     <img
                                         src={item.image}
                                         alt={item.name}
-                                        className="w-16 h-16 object-cover rounded"
+                                        className="w-14 h-14 md:w-16 md:h-16 object-cover rounded"
                                     />
-                                    <div className="flex-1">
+                                    <div className="flex-1 w-full text-center md:text-left">
                                         <p className="font-medium">{item.name}</p>
-                                        <p className="text-sm text-gray-500">
+                                        <p className="text-xs md:text-sm text-gray-500">
                                             Qty: {item.quantity}
                                         </p>
-                                        <p className="text-sm text-gray-500">
+                                        <p className="text-xs md:text-sm text-gray-500">
                                             LKR {item.price.toFixed(2)}
                                         </p>
                                     </div>
@@ -227,19 +230,19 @@ export default function AdminOrderPage() {
                         </div>
 
                         {/* TOTAL */}
-                        <div className="mt-6 text-right text-lg font-bold text-rose-600">
+                        <div className="mt-4 md:mt-6 text-right text-base md:text-lg font-bold text-rose-600">
                             Total: LKR{" "}
                             {calculateTotal(selectedOrder.orderdItems).toFixed(2)}
                         </div>
 
                         {/* ADMIN CONTROLS */}
                         {mode === "manage" && (
-                            <div className="mt-8 border-t pt-6">
-                                <h3 className="font-semibold mb-3">
+                            <div className="mt-6 md:mt-8 border-t pt-4 md:pt-6">
+                                <h3 className="font-semibold mb-2 md:mb-3">
                                     Admin Controls
                                 </h3>
 
-                                <label className="block text-sm font-medium mb-1">
+                                <label className="block text-xs md:text-sm font-medium mb-1">
                                     Status
                                 </label>
                                 <select
@@ -247,7 +250,7 @@ export default function AdminOrderPage() {
                                     onChange={(e) =>
                                         setStatus(e.target.value)
                                     }
-                                    className="w-full border rounded px-3 py-2 mb-4"
+                                    className="w-full border rounded px-2 md:px-3 py-2 mb-3 md:mb-4"
                                 >
                                     {STATUS_OPTIONS.map((s) => (
                                         <option key={s} value={s}>
@@ -256,7 +259,7 @@ export default function AdminOrderPage() {
                                     ))}
                                 </select>
 
-                                <label className="block text-sm font-medium mb-1">
+                                <label className="block text-xs md:text-sm font-medium mb-1">
                                     Notes
                                 </label>
                                 <textarea
@@ -265,21 +268,21 @@ export default function AdminOrderPage() {
                                         setNotes(e.target.value)
                                     }
                                     rows="4"
-                                    className="w-full border rounded px-3 py-2"
+                                    className="w-full border rounded px-2 md:px-3 py-2"
                                 />
 
-                                <div className="flex justify-end gap-3 mt-4">
+                                <div className="flex justify-end gap-2 md:gap-3 mt-3 md:mt-4">
                                     <button
                                         onClick={() =>
                                             setSelectedOrder(null)
                                         }
-                                        className="px-4 py-2 border rounded"
+                                        className="px-3 md:px-4 py-2 border rounded"
                                     >
                                         Cancel
                                     </button>
                                     <button
                                         onClick={updateOrder}
-                                        className="px-4 py-2 bg-rose-500 text-white rounded hover:bg-rose-600"
+                                        className="px-3 md:px-4 py-2 bg-rose-500 text-white rounded hover:bg-rose-600"
                                     >
                                         Save Changes
                                     </button>
