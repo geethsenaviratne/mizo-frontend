@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/jpeg" href="/logo.jpg" />
+      <link rel="icon" type="image/jpeg" href="/logo.jpg" color="#e75480" />
     <style>
       /* Rounded favicon for supported browsers */
       link[rel="icon"] {
@@ -10,12 +11,23 @@
         overflow: hidden;
         /* Some browsers may not support styling favicons directly */
       }
+        /* Style for visible MIZO BEAUTY title */
+        .mizo-title {
+          color: #e75480;
+          font-family: 'Segoe UI', Arial, sans-serif;
+          font-weight: bold;
+          letter-spacing: 2px;
+          font-size: 2rem;
+          text-align: center;
+          margin-top: 2rem;
+        }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MIZO BEAUTY</title>
   </head>
   <body>
     <div id="root"></div>
+      <div class="mizo-title">MIZO BEAUTY</div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
